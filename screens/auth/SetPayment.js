@@ -57,20 +57,47 @@ export default class SetPayment extends Component {
             <Text style={STYLES.textLogo}>Tenant</Text>
           </View>
 
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}>
             <Text style={STYLES.textTitle}>Set payment</Text>
             {selected ? (
               <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('BankLogin')}>
+                onPress={() => this.props.navigation.navigate('BankLogin')}
+                style={{
+                  backgroundColor: COLORS.main,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                  borderRadius: 10,
+                }}>
                 <Text
                   style={[
                     STYLES.textTitle,
-                    {fontWeight: 'bold', color: COLORS.main},
+                    {fontWeight: 'bold', color: COLORS.white},
                   ]}>
                   Continue
                 </Text>
               </TouchableOpacity>
-            ) : null}
+            ) : (
+              <View
+                style={{
+                  // backgroundColor: COLORS.grey,
+                  paddingHorizontal: 10,
+                  paddingVertical: 5,
+                  borderRadius: 10,
+                }}>
+                <Text
+                  style={[
+                    STYLES.textTitle,
+                    {fontWeight: 'bold', color: COLORS.grey},
+                  ]}>
+                  Continue
+                </Text>
+              </View>
+            )}
           </View>
         </View>
 

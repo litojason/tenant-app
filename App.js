@@ -7,12 +7,15 @@ import SetPayment from './screens/auth/SetPayment';
 import BankLogin from './screens/auth/BankLogin';
 import TanNumber from './screens/auth/TanNumber';
 
+import Home from './screens/Home';
+
 export default class App extends Component {
   render() {
     // return <Login />;
     // return <Register />;
     // return <SetPayment />;
     // return <BankLogin />;
-    return <TanNumber />;
+    // return <TanNumber />;
+    return <Home />;
   }
 }
