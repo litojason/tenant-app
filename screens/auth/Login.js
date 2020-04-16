@@ -31,8 +31,16 @@ export default class Login extends Component {
           }}>
           <Text style={[STYLES.textTitle, {marginBottom: 30}]}>Welcome</Text>
 
-          <AuthInput placeholder="Email" icon="email-outline" />
-          <AuthInput placeholder="Password" icon="key-outline" />
+          <AuthInput
+            placeholder="Email"
+            icon="email-outline"
+            keyboardType="email-address"
+          />
+          <AuthInput
+            placeholder="Password"
+            icon="key-outline"
+            secureTextEntry={true}
+          />
 
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('SetPayment')}

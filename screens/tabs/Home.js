@@ -9,20 +9,15 @@ import {
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
-import {COLORS, STYLES, DIMENSIONS} from '../components/styles';
-import Icon from '../components/Icon';
+import {COLORS, STYLES, DIMENSIONS} from '../../components/styles';
+import Icon from '../../components/Icon';
+
+import {DATAS, _renderItem} from '../../components/PaymentItem';
 
 const RANGE_VALUE = 90;
 const ANIMATED_VALUE1 = DIMENSIONS.height / 2;
 const ANIMATED_VALUE2 = ANIMATED_VALUE1 + RANGE_VALUE;
 const ANIMATED_VALUE3 = ANIMATED_VALUE2 + RANGE_VALUE;
-
-const DATAS = [
-  {month: 'June', basicRent: 950, paidUpTo: '5 July 2020', oldRentDue: 0},
-  {month: 'June', basicRent: 1000, paidUpTo: '5 July 2020', oldRentDue: 0},
-  {month: 'July', basicRent: 850, paidUpTo: '5 August 2020', oldRentDue: 0},
-  {month: 'July', basicRent: 800, paidUpTo: '5 August 2020', oldRentDue: 0},
-];
 
 export default class Home extends Component {
   constructor(props) {
@@ -64,72 +59,6 @@ export default class Home extends Component {
     this.handleAnimated(this.animation1, RANGE_VALUE);
     this.handleAnimated(this.animation2, RANGE_VALUE * 2);
     this.handleAnimated(this.animation3, RANGE_VALUE * 3);
-  };
-
-  _renderItem = ({item, index}) => {
-    let bgColor;
-    let bgButtonColor;
-    switch (index % 2) {
-      case 0:
-        bgColor = COLORS.lightBlue;
-        bgButtonColor = COLORS.main;
-        break;
-      case 1:
-        bgColor = COLORS.lightPurple;
-        bgButtonColor = COLORS.purple;
-        break;
-      default:
-        bgColor = COLORS.black;
-        bgButtonColor = COLORS.black;
-    }
-
-    return (
-      <View
-        key={index}
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-          backgroundColor: bgColor,
-          margin: 10,
-          paddingHorizontal: 20,
-          paddingVertical: 30,
-          borderRadius: 20,
-          elevation: 1,
-        }}>
-        <Text style={STYLES.textTitle}>{item.month}</Text>
-
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <View style={{flex: 1}}>
-            <Text style={STYLES.textNormalGrey}>Basic rent</Text>
-            <Text style={[STYLES.textNormalGrey, {marginVertical: 5}]}>
-              Paid up to
-            </Text>
-            <Text style={STYLES.textNormalGrey}>Old rent due</Text>
-          </View>
-
-          <View style={{flex: 1}}>
-            <Text style={STYLES.textNormal}>${item.basicRent}</Text>
-            <Text style={[STYLES.textNormal, {marginVertical: 5}]}>
-              {item.paidUpTo}
-            </Text>
-            <Text style={STYLES.textNormal}>${item.oldRentDue}</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity
-          style={[
-            STYLES.buttonSmallContainer,
-            {backgroundColor: bgButtonColor},
-          ]}>
-          <Text style={STYLES.buttonSmallText}>Pay Now</Text>
-        </TouchableOpacity>
-      </View>
-    );
   };
 
   render() {
@@ -240,7 +169,12 @@ export default class Home extends Component {
               data={DATAS}
               sliderWidth={DIMENSIONS.width}
               itemWidth={DIMENSIONS.width * 0.7}
-              renderItem={this._renderItem}
+              renderItem={({item, index}) =>
+                _renderItem(item, index, () =>
+                  this.props.navigation.navigate('PayNow'),
+                )
+              }
+              inactiveSlideShift={20}
             />
           </View>
         </Animated.View>

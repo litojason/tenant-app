@@ -21,6 +21,8 @@ export default class AuthInput extends Component {
         <TextInput
           placeholder={this.props.placeholder}
           placeholderTextColor={COLORS.grey}
+          keyboardType={this.props.keyboardType}
+          secureTextEntry={this.props.secureTextEntry}
           style={[
             STYLES.textNormal,
             {flex: 1, margin: 0, marginLeft: 10, padding: 0},

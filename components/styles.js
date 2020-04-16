@@ -18,6 +18,12 @@ export const COLORS = {
 };
 
 export const STYLES = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    padding: 20,
+  },
   buttonContainerOutline: {
     alignItems: 'center',
     justifyContent: 'center',
