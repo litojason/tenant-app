@@ -35,8 +35,16 @@ export default class Register extends Component {
 
           <AuthInput placeholder="First Name" icon="account-outline" />
           <AuthInput placeholder="Last Name" icon="account-outline" />
-          <AuthInput placeholder="Email" icon="email-outline" />
-          <AuthInput placeholder="Password" icon="key-outline" />
+          <AuthInput
+            placeholder="Email"
+            icon="email-outline"
+            keyboardType="email-address"
+          />
+          <AuthInput
+            placeholder="Password"
+            icon="key-outline"
+            secureTextEntry={true}
+          />
 
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate('SetPayment')}
